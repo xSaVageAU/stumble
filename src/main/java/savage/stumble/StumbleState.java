@@ -5,8 +5,7 @@ import net.minecraft.util.StringRepresentable;
 
 public enum StumbleState implements StringRepresentable {
 	NONE("none"),
-	CRAWLING("crawling"),
-	SITTING("sitting");
+	CRAWLING("crawling");
 
 	public static final Codec<StumbleState> CODEC = StringRepresentable.fromEnum(StumbleState::values);
 	private final String name;

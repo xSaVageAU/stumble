@@ -1,7 +1,6 @@
 package savage.stumble;
 
 import net.fabricmc.api.ModInitializer;
-
 import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
 import net.minecraft.resources.Identifier;
@@ -18,12 +17,15 @@ public class Stumble implements ModInitializer {
 			builder -> builder.persistent(StumbleState.CODEC).initializer(() -> StumbleState.NONE).copyOnDeath()
 	);
 
+	public static final AttachmentType<Integer> STUMBLE_TICKS = AttachmentRegistry.create(
+			Identifier.fromNamespaceAndPath(MOD_ID, "ticks"),
+			builder -> builder.persistent(com.mojang.serialization.Codec.INT).initializer(() -> 0).copyOnDeath()
+	);
+
 	@Override
 	public void onInitialize() {
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
+		StumbleHandler.init();
 
-		LOGGER.info("Hello Fabric world!");
+		LOGGER.info("Stumble mod initialized!");
 	}
 }

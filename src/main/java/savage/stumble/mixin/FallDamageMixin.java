@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import savage.stumble.Stumble;
+import savage.stumble.StumbleState;
 
 @Mixin(LivingEntity.class)
 public abstract class FallDamageMixin {
@@ -27,6 +28,9 @@ public abstract class FallDamageMixin {
 				if (player.getRandom().nextDouble() < stumbleChance) {
 					Stumble.LOGGER.info("[Stumble] Player {} STUMBLED! (Chance: {}%)",
 							player.getName().getString(), (int) (stumbleChance * 100));
+
+					player.setAttached(Stumble.STUMBLE_STATE, StumbleState.CRAWLING);
+					player.setAttached(Stumble.STUMBLE_TICKS, 40);
 				} else {
 					Stumble.LOGGER.info("[Stumble] Player {} fell from {} blocks. Expected Damage: {}. Stumble Chance: {}% (Safe)",
 							player.getName().getString(), fallDistance, expectedDamage, (int) (stumbleChance * 100));
