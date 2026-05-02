@@ -24,8 +24,13 @@ public abstract class FallDamageMixin {
 				// 5% chance per point of damage (1 point = 0.5 hearts)
 				double stumbleChance = Math.min(1.0, expectedDamage * 0.05);
 
-				Stumble.LOGGER.info("[Stumble] Player {} fell from {} blocks. Expected Damage: {}. Stumble Chance: {}%",
-						player.getName().getString(), fallDistance, expectedDamage, (int) (stumbleChance * 100));
+				if (player.getRandom().nextDouble() < stumbleChance) {
+					Stumble.LOGGER.info("[Stumble] Player {} STUMBLED! (Chance: {}%)",
+							player.getName().getString(), (int) (stumbleChance * 100));
+				} else {
+					Stumble.LOGGER.info("[Stumble] Player {} fell from {} blocks. Expected Damage: {}. Stumble Chance: {}% (Safe)",
+							player.getName().getString(), fallDistance, expectedDamage, (int) (stumbleChance * 100));
+				}
 			}
 		}
 	}
