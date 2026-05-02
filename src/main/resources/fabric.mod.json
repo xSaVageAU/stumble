@@ -1,0 +1,31 @@
+{
+	"schemaVersion": 1,
+	"id": "stumble",
+	"version": "${version}",
+	"name": "stumble",
+	"description": "A server-side mod that adds a chance for players to stumble after taking fall damage. Higher damage increases the chance of stumbling into a crawl, then sitting, before standing back up.",
+	"authors": [
+		"xSaVageAU"
+	],
+	"contact": {
+		"homepage": "https://github.com/xSaVageAU/stumble",
+		"sources": "https://github.com/xSaVageAU/stumble"
+	},
+	"license": "MIT",
+	"icon": "assets/stumble/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"savage.stumble.Stumble"
+		]
+	},
+	"mixins": [
+		"stumble.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.19.2",
+		"minecraft": "~26.1",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
